@@ -122,16 +122,16 @@ public class ListFormActivity extends AppCompatActivity  implements View.OnClick
         if (view == ListButton) {
             if(awesomeValidation.validate()) {
 
-                String movieName = editTextMovieName.getText().toString();
-                String movieCategory = editTextMovieCategory.getText().toString();
-                String movieDetail = editTextMovieDetail.getText().toString();
+               // String movieName = editTextMovieName.getText().toString();
+               // String movieCategory = editTextMovieCategory.getText().toString();
+               // String movieDetail = editTextMovieDetail.getText().toString();
+                insertMovieData();
 
                 Intent intent = new Intent(ListFormActivity.this, WatchListActivity.class);
 
-                intent.putExtra("movieName", movieName);
-                intent.putExtra("movieCategory", movieCategory);
-                intent.putExtra("movieDetail", movieDetail);
-
+                //intent.putExtra("movieName", movieName);
+                //intent.putExtra("movieCategory", movieCategory);
+               // intent.putExtra("movieDetail", movieDetail);
 
                 startActivity(intent);
             }else{
@@ -144,12 +144,12 @@ public class ListFormActivity extends AppCompatActivity  implements View.OnClick
         String movieName = editTextMovieName.getText().toString();
         String movieCategory = editTextMovieCategory.getText().toString();
         String movieDetail = editTextMovieDetail.getText().toString();
-        //String name = editname.getText().toString();
-       // String category = editcategory.getText().toString();
-       // String course = spinnerCourses.getSelectedItem().toString();
 
-        Students students = new Students(name,category,course);
-        studentdb.push().setValue(students);
+        Movies movies = new Movies(movieName,movieCategory,movieDetail);
+        moviedb.push().setValue(movies);
+
+
+
        // Toast.makeText(MainActivity.this,"Data inserted!",Toast.LENGTH_SHORT).show();
     }
     /*
