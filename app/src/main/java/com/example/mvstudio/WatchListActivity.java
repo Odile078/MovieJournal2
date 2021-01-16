@@ -10,19 +10,24 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class WatchListActivity extends AppCompatActivity {
-    @BindView(R.id.movienameTextView)
-    TextView movienameTextView;
-    @BindView(R.id.moviecategoryTextView) TextView moviecategoryTextView;
-    @BindView(R.id.moviedetailTextView)
-    TextView moviedetailTextView;
+    @BindView(R.id.listview) ListView myListView;
+    List<Movies> moviesList;
+
+    DatabaseReference moviesdb;
 
     Toolbar toolbar;
     DrawerLayout drawer;
@@ -34,6 +39,10 @@ public class WatchListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_watch_list);
 
         ButterKnife.bind(this);
+
+        moviesList = new ArrayList<>();
+
+        moviesdb = FirebaseDatabase.getInstance().getReference("Movies");
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
