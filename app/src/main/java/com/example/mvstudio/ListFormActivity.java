@@ -20,6 +20,8 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,6 +37,7 @@ public class ListFormActivity extends AppCompatActivity  implements View.OnClick
     @BindView(R.id.submitButton)
     Button submitButton;
     @BindView(R.id.ListButton) Button ListButton;
+    DatabaseReference moviedb;
     Toolbar toolbar;
     DrawerLayout drawer;
     ActionBarDrawerToggle toggle;
@@ -59,6 +62,8 @@ public class ListFormActivity extends AppCompatActivity  implements View.OnClick
 
         submitButton.setOnClickListener(this);
         ListButton.setOnClickListener(this);
+
+        moviedb = FirebaseDatabase.getInstance().getReference().child("Movies");
 
         //validation style
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
@@ -103,6 +108,7 @@ public class ListFormActivity extends AppCompatActivity  implements View.OnClick
             if(awesomeValidation.validate() ) {
                 // insertData(movieName);
                 // editTextMovieName.setText("");
+                insertMovieData();
 
                 FragmentManager fm = getSupportFragmentManager();
                 FormSuccessFragment FormSuccessFragment = new FormSuccessFragment();
@@ -133,6 +139,18 @@ public class ListFormActivity extends AppCompatActivity  implements View.OnClick
             }
         }
 
+    }
+    public void insertMovieData(){
+        String movieName = editTextMovieName.getText().toString();
+        String movieCategory = editTextMovieCategory.getText().toString();
+        String movieDetail = editTextMovieDetail.getText().toString();
+        //String name = editname.getText().toString();
+       // String category = editcategory.getText().toString();
+       // String course = spinnerCourses.getSelectedItem().toString();
+
+        Students students = new Students(name,category,course);
+        studentdb.push().setValue(students);
+       // Toast.makeText(MainActivity.this,"Data inserted!",Toast.LENGTH_SHORT).show();
     }
     /*
     public void insertData(String movieName){
