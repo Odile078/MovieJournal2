@@ -14,8 +14,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,12 +83,31 @@ public class WatchListActivity extends AppCompatActivity {
             }
         });
 
-        Intent intent = getIntent();
-        String movieName = intent.getStringExtra("movieName");
-        String movieCategory = intent.getStringExtra("movieCategory");
-        String movieDetail = intent.getStringExtra("movieDetail");
-        movienameTextView.setText("Here are all the movie: " + movieName);
-        moviecategoryTextView.setText("Here are all the Category: " + movieCategory);
-        moviedetailTextView.setText("Here are all the Detail: " + movieDetail);
+       // Intent intent = getIntent();
+       // String movieName = intent.getStringExtra("movieName");
+       // String movieCategory = intent.getStringExtra("movieCategory");
+      //  String movieDetail = intent.getStringExtra("movieDetail");
+       // movienameTextView.setText("Here are all the movie: " + movieName);
+       // moviecategoryTextView.setText("Here are all the Category: " + movieCategory);
+      //  moviedetailTextView.setText("Here are all the Detail: " + movieDetail);
+
+        moviesdb.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                moviesList.clear();
+                for (DataSnapshot movieDatasnap : dataSnapshot.getChildren()){
+                    Movies movies = movieDatasnap.getValue(Movies.class);
+                    moviesList.add(movies);
+                }
+
+                ListAdapter2 adapter = new ListAdapter2(WatchListActivity.this,moviesList);
+                myListView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
