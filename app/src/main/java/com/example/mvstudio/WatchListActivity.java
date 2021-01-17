@@ -10,6 +10,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,6 +29,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class WatchListActivity extends AppCompatActivity {
+    @BindView(R.id.EditTextSearch) EditText EditTextSearch;
+    @BindView(R.id.imageButton) ImageButton imageButton;
     @BindView(R.id.listview) ListView myListView;
     List<Movies> moviesList;
 
