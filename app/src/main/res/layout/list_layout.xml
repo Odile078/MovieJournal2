@@ -1,40 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="5dp"
+    app:cardElevation="5dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <TextView
+            android:id="@+id/viewname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:text="Name"
+            android:textSize="18dp" />
 
-    <TextView
-        android:id="@+id/viewname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="21dp"
-        android:text="Movie Name"
-        android:textSize="18dp" />
+        <TextView
+            android:id="@+id/viewcategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="106dp"
+            android:text="Category"
+            android:textSize="18dp" />
 
-    <TextView
-        android:id="@+id/viewcategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="55dp"
-        android:layout_marginEnd="101dp"
-        android:text="Category"
-        android:textColor="#300606"
-        android:textSize="18dp" />
+        <TextView
+            android:id="@+id/viewdetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="201dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="98dp"
+            android:layout_marginEnd="156dp"
+            android:text="Details"
+            android:textSize="18dp" />
+    </RelativeLayout>
 
-    <TextView
-        android:id="@+id/viewdetail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="59dp"
-        android:text="Detail"
-        android:textColor="#300606"
-        android:textSize="18dp" />
-
-</RelativeLayout>
+</androidx.cardview.widget.CardView>
