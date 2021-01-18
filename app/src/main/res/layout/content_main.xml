@@ -46,7 +46,7 @@
         android:id="@+id/toListFormButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="450dp"
+        android:layout_marginTop="400dp"
         android:layout_marginLeft="25dp"
         android:background="@drawable/custom_button"
         android:text="Make Watchlist"
@@ -72,7 +72,7 @@
         android:id="@+id/moviesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="450dp"
+        android:layout_marginTop="400dp"
         android:layout_marginLeft="225dp"
         android:background="@drawable/custom_button"
         android:text="Trending"
@@ -80,5 +80,15 @@
         tools:layout_editor_absoluteX="164dp"
         tools:layout_editor_absoluteY="578dp"
         />
+
+    <TextView
+        android:id="@+id/registrationLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="251dp"
+        android:text="Do not have an account? register here" />
 
 </RelativeLayout>
