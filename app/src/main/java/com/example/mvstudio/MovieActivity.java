@@ -16,6 +16,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MovieActivity extends AppCompatActivity {
     int[] images = {R.drawable.cenolaholmes, R.drawable.charvie, R.drawable.christmaschrinicals, R.drawable.cmagicmoonlight, R.drawable.cmagictoafrica, R.drawable.cnightmuseum, R.drawable.cspiderwickk, R.drawable.ctheoldguard, R.drawable.chisdarkmaterials, R.drawable.cgrownish, R.drawable.csuits, R.drawable.ctinyprettythings, R.drawable.cemilyinparis, R.drawable.cgodmothered};
@@ -30,11 +32,16 @@ public class MovieActivity extends AppCompatActivity {
     Toolbar toolbar;
     DrawerLayout drawer;
     ActionBarDrawerToggle toggle;
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
+        mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser user = mAuth.getCurrentUser();
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -62,6 +69,10 @@ public class MovieActivity extends AppCompatActivity {
                 }
                 else if(item.getItemId()==R.id.nav_form){
                     startActivity (new Intent(MovieActivity.this, WatchListActivity.class));
+
+                }
+                else if(item.getItemId()==R.id.nav_account){
+                    startActivity (new Intent(MovieActivity.this, ProfileActivity.class));
 
                 }
                 DrawerLayout drawerLayout = findViewById(R.id.drawer);

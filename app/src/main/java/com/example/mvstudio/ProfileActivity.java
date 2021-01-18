@@ -24,7 +24,7 @@ public class ProfileActivity extends AppCompatActivity {
         TextView welcomeText = (TextView) findViewById(R.id.welcomeText);
         welcomeText.setText("Welcome"+email);
 
-        Button logoutButton= findViewById(R.id.buttonLogin);
+        Button logoutButton= findViewById(R.id.buttonLogout);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

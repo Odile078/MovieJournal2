@@ -20,6 +20,8 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -41,6 +43,8 @@ public class ListFormActivity extends AppCompatActivity  implements View.OnClick
     Toolbar toolbar;
     DrawerLayout drawer;
     ActionBarDrawerToggle toggle;
+    private FirebaseAuth mAuth;
+
 
     AwesomeValidation awesomeValidation;
 
@@ -49,6 +53,9 @@ public class ListFormActivity extends AppCompatActivity  implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_form);
         ButterKnife.bind(this);
+        mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser user = mAuth.getCurrentUser();
         db = new DatabaseHelper(this);
 
         toolbar = findViewById(R.id.toolbar);
@@ -89,6 +96,10 @@ public class ListFormActivity extends AppCompatActivity  implements View.OnClick
                 }
                 else if(item.getItemId()==R.id.nav_form){
                     startActivity (new Intent(ListFormActivity.this, WatchListActivity.class));
+
+                }
+                else if(item.getItemId()==R.id.nav_account){
+                    startActivity (new Intent(ListFormActivity.this, ProfileActivity.class));
 
                 }
                 DrawerLayout drawerLayout = findViewById(R.id.drawer);

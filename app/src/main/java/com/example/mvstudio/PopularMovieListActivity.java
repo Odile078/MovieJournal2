@@ -22,6 +22,8 @@ import com.example.mvstudio.models.Result;
 import com.example.mvstudio.network.MoviedbApi;
 import com.example.mvstudio.network.MoviedbClient;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
@@ -43,12 +45,17 @@ public class PopularMovieListActivity extends AppCompatActivity {
     Toolbar toolbar;
     DrawerLayout drawer;
     ActionBarDrawerToggle toggle;
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popular_movie_list);
         ButterKnife.bind(this);
+        mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser user = mAuth.getCurrentUser();
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -107,6 +114,10 @@ public class PopularMovieListActivity extends AppCompatActivity {
                 }
                 else if(item.getItemId()==R.id.nav_form){
                     startActivity (new Intent(PopularMovieListActivity.this, WatchListActivity.class));
+
+                }
+                else if(item.getItemId()==R.id.nav_account){
+                    startActivity (new Intent(PopularMovieListActivity.this, ProfileActivity.class));
 
                 }
                 DrawerLayout drawerLayout = findViewById(R.id.drawer);

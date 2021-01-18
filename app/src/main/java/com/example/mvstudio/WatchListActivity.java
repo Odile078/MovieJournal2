@@ -21,6 +21,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,6 +52,8 @@ public class WatchListActivity extends AppCompatActivity {
     Toolbar toolbar;
     DrawerLayout drawer;
     ActionBarDrawerToggle toggle;
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,9 @@ public class WatchListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_watch_list);
 
         ButterKnife.bind(this);
+        mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser user = mAuth.getCurrentUser();
 
         moviesList = new ArrayList<>();
 
@@ -88,6 +95,10 @@ public class WatchListActivity extends AppCompatActivity {
                 }
                 else if(item.getItemId()==R.id.nav_form){
                     startActivity (new Intent(WatchListActivity.this, WatchListActivity.class));
+
+                }
+                else if(item.getItemId()==R.id.nav_account){
+                    startActivity (new Intent(WatchListActivity.this, ProfileActivity.class));
 
                 }
                 DrawerLayout drawerLayout = findViewById(R.id.drawer);
