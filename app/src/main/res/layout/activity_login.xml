@@ -17,14 +17,18 @@
         android:textStyle="bold"
         android:layout_margin="30dp"/>
 
+
     <EditText
         android:id="@+id/usernameInput"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="42dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="88dp"
+        android:background="@color/black"
         android:hint="Enter Username"
+        android:textColor="@color/teal_200"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvtitle" />
@@ -32,11 +36,15 @@
     <EditText
         android:id="@+id/passwordInput"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="41dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="146dp"
-        android:hint="Enter Password" />
+        android:layout_marginEnd="0dp"
+        android:background="@color/black"
+        android:hint="Enter Password"
+        android:textColor="@color/teal_200"
+        android:textColorHint="@color/white" />
 
     <Button
         android:id="@+id/buttonLogin"
@@ -48,19 +56,20 @@
         android:padding="5dp"
         android:text="Login"
         android:textAllCaps="false"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:background="@drawable/search_layout"/>
 
     <TextView
         android:id="@+id/registrationLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="80dp"
-        android:layout_marginBottom="415dp"
+        android:layout_marginTop="285dp"
         android:text="Do not have an account? register here"
-
+        android:textColor="#592323"
+        android:textSize="18dp"
         tools:layout_editor_absoluteY="268dp" />
 
 </RelativeLayout>
