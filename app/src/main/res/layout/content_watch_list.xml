@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="400dp"
-        android:layout_height="225dp"
+        android:layout_height="150dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:src="@drawable/logo2" />
@@ -20,7 +20,7 @@
         android:layout_height="?attr/actionBarSize"
         android:padding="10dp"
         app:queryHint="Search here"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="160dp"
         />
     <!--<EditText
         android:id="@+id/EditTextSearch"
@@ -45,14 +45,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="310dp"
+        android:layout_marginTop="200dp"
         android:text="My Watch List"
         android:textSize="20dp" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="350dp">
+        android:layout_marginTop="225dp">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv"
             android:layout_width="match_parent"

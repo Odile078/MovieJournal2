@@ -36,14 +36,14 @@ import butterknife.ButterKnife;
 public class WatchListActivity extends AppCompatActivity {
    // @BindView(R.id.EditTextSearch) EditText EditTextSearch;
     //@BindView(R.id.imageButton) ImageButton imageButton;
-    @BindView(R.id.rv) RecyclerView mResultList;
+    @BindView(R.id.rv) RecyclerView recyclerView;
     @BindView(R.id.searchView) SearchView searchView;
    // @BindView(R.id.listview) ListView myListView;
 
 
     List<Movies> moviesList;
     ArrayList<Movies> list;
-    RecyclerView recyclerView;
+   // RecyclerView recyclerView;
 
     DatabaseReference moviesdb;
 
