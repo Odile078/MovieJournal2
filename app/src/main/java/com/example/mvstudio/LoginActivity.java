@@ -6,12 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -21,6 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     final String TAG = "LoginActivity";
+    AwesomeValidation awesomeValidation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +36,22 @@ public class LoginActivity extends AppCompatActivity {
         final EditText usernameInput = (EditText) findViewById(R.id.usernameInput);
         final EditText passwordInput = (EditText) findViewById(R.id.passwordInput);
 
+        //validation style
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+        // add validations
+        awesomeValidation.addValidation(this,R.id.usernameInput, Patterns.EMAIL_ADDRESS,R.string.invalid_email);
+        awesomeValidation.addValidation(this,R.id.passwordInput, ".{6,}",R.string.week_password);
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                login(usernameInput.getText().toString(), passwordInput.getText().toString());
+                //check validation
+                if (awesomeValidation.validate()) {
+                    login(usernameInput.getText().toString(), passwordInput.getText().toString());
+                }else{
+                    Toast.makeText(getApplicationContext(),"Validation faild",Toast.LENGTH_LONG).show();
 
+                }
             }
         });
         TextView registerLink = (TextView) findViewById(R.id.registrationLink);
