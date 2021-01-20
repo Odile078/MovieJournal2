@@ -4,6 +4,28 @@ This is a mobile application that allows a user to browse through new movies and
 ## Author
  Odile Uwimpuhwe
 
+## Demonstration
+ *Sign up
+  ![Sign up page](photos/register.PNG)
+ *Login
+ ![Login page](photos/login.PNG)
+ *Dashboard
+ ![DAshboard page](photos/drawer.PNG)
+
+ *Home Page
+ ![Home page](photos\home.PNG)
+ *Movies page
+ ![Movies page](photos/trending.PNG)
+
+*Movies detail page
+ ![Movies detail page](photos/moviedetails.PNG)
+ *Watchlist page
+  ![Watchlist page](photos/dmovieform.png)
+
+  *Watchlist
+   ![Watchlist](photos/watchlist.PNG)
+
+
 
 ## Installation / Setup instruction
 * Open Terminal {Ctrl+Alt+T}
