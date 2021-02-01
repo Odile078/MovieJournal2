@@ -66,8 +66,10 @@ public class WatchListActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
 
         moviesList = new ArrayList<>();
+        String uid = user.getUid();
+        //moviesdb = FirebaseDatabase.getInstance().getReference("Movies");
+        moviesdb = FirebaseDatabase.getInstance().getReference("Movies").child(uid);
 
-        moviesdb = FirebaseDatabase.getInstance().getReference("Movies");
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

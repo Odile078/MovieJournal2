@@ -69,8 +69,9 @@ public class ListFormActivity extends AppCompatActivity  implements View.OnClick
 
         submitButton.setOnClickListener(this);
         ListButton.setOnClickListener(this);
-
-        moviedb = FirebaseDatabase.getInstance().getReference().child("Movies");
+        String uid = user.getUid();
+        //moviedb = FirebaseDatabase.getInstance().getReference().child("Movies");
+        moviedb = FirebaseDatabase.getInstance().getReference("Movies").child(uid);
 
         //validation style
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
@@ -157,7 +158,12 @@ public class ListFormActivity extends AppCompatActivity  implements View.OnClick
         String movieDetail = editTextMovieDetail.getText().toString();
 
         Movies movies = new Movies(movieName,movieCategory,movieDetail);
-        moviedb.push().setValue(movies);
+
+        DatabaseReference pushRef = moviedb.push();
+        String pushId = pushRef.getKey();
+        movies.setPushId(pushId);
+        pushRef.setValue(movies);
+        //moviedb.push().setValue(movies);
 
 
 

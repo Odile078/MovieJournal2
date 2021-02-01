@@ -4,6 +4,7 @@ public class Movies {
     String name;
     String category;
     String detail;
+    private String pushId;
     public Movies(){}
     public Movies(String name, String category, String detail) {
         this.name = name;
@@ -21,5 +22,12 @@ public class Movies {
 
     public String getDetail() {
         return detail;
+    }
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
     }
 }
