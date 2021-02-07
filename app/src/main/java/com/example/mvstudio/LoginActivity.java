@@ -3,6 +3,7 @@ package com.example.mvstudio;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
+    private ProgressDialog mAuthProgressDialog;
     final String TAG = "LoginActivity";
     AwesomeValidation awesomeValidation;
 
@@ -32,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
+        createAuthProgressDialog();
         Button loginButton = (Button) findViewById(R.id.buttonLogin);
         final EditText usernameInput = (EditText) findViewById(R.id.usernameInput);
         final EditText passwordInput = (EditText) findViewById(R.id.passwordInput);
@@ -41,6 +44,8 @@ public class LoginActivity extends AppCompatActivity {
         // add validations
         awesomeValidation.addValidation(this,R.id.usernameInput, Patterns.EMAIL_ADDRESS,R.string.invalid_email);
         awesomeValidation.addValidation(this,R.id.passwordInput, ".{6,}",R.string.week_password);
+
+
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
         TextView registerLink = (TextView) findViewById(R.id.registrationLink);
         registerLink.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,11 +68,21 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+    private void createAuthProgressDialog() {
+        mAuthProgressDialog = new ProgressDialog(this);
+        mAuthProgressDialog.setTitle("Loading...");
+        mAuthProgressDialog.setMessage("Please wait while we are checking...");
+        mAuthProgressDialog.setCancelable(false);
+    }
+
     private void login(String email, String password){
+        mAuthProgressDialog.show();
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        mAuthProgressDialog.dismiss();
+
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");

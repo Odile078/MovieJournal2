@@ -3,6 +3,7 @@ package com.example.mvstudio;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -21,6 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class RegistrationActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
+    private ProgressDialog mAuthProgressDialog;
     final String TAG = "RegistrationActivity" ;
     AwesomeValidation awesomeValidation;
 
@@ -29,6 +31,7 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         mAuth = FirebaseAuth.getInstance();
+        createAuthProgressDialog();
 
         Button registerButton = (Button) findViewById(R.id.buttonRegister);
         final EditText usernameInput = (EditText) findViewById(R.id.usernameInput);
@@ -54,12 +57,21 @@ public class RegistrationActivity extends AppCompatActivity {
         });
 
     }
+    private void createAuthProgressDialog() {
+        mAuthProgressDialog = new ProgressDialog(this);
+        mAuthProgressDialog.setTitle("Loading...");
+        mAuthProgressDialog.setMessage("Please wait while we are checking...");
+        mAuthProgressDialog.setCancelable(false);
+    }
 
     private  void signup(String email, String password){
+        mAuthProgressDialog.show();
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        mAuthProgressDialog.dismiss();
+
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
